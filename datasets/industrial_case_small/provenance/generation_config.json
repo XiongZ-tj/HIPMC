@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "dataset_id": "derived_small_aerospace_heat_treatment_scheduling_cases",
+  "protocol": "stratified_order_subsampling_with_derived_arrivals_and_due_dates",
+  "n_jobs_per_tier": [
+    10,
+    20
+  ],
+  "instances_per_tier": 10,
+  "target_load": 1.0,
+  "initial_job_fraction": 0.2,
+  "min_slack_ratio": 0.25,
+  "arrival_process": "normalized exponential interarrival spacings",
+  "arrival_span_formula": "sum(size*pt) / (load * sum(machine_count*capacity))",
+  "machine_counts": [
+    1,
+    1,
+    1
+  ],
+  "machine_capacities": [
+    120,
+    160,
+    200
+  ],
+  "processing_times": [
+    128,
+    190,
+    104,
+    293,
+    202,
+    279
+  ],
+  "due_mode": "scale",
+  "reference_instance": "D:\\PyCharm 2025.3.3\\Project\\Research3_revised\\datasets\\aerospace_heat_treatment_dynamic_case\\instances\\jobs\\load_1p00\\industrial_orders_load-1p00_instance-001.csv",
+  "reference_instance_sha256": "2898d12dfbdd5c892d2800327d9411abda28dcd434f12495702fa0547c976615",
+  "reference_span": 1366.3333,
+  "order_source": "89 fixed industrial orders (family,size,due)",
+  "observed_fields": [
+    "family",
+    "size",
+    "reference_due_time"
+  ],
+  "derived_fields": [
+    "arrival_time",
+    "due_time_after_horizon_scaling"
+  ],
+  "seed_base": 84000000
+}

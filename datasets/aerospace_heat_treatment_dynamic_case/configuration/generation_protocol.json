@@ -1,0 +1,33 @@
+{
+  "arrival_process": "normalized exponential interarrival spacings with seeded due-feasible order-to-slot assignment",
+  "arrival_span_formula": "sum(weight_i * processing_time_i) / (target_load * sum(machine_count_c * capacity_c))",
+  "dataset_version": "1.0.0",
+  "due_time_rule": "preserve the observed industrial due time",
+  "initial_job_count": 18,
+  "initial_job_fraction": 0.20224719101123595,
+  "instance_seed_base": 41000000,
+  "instances_per_load": 20,
+  "minimum_nominal_slack_ratio": 0.25,
+  "processing_times_by_source_family_1_to_6": [
+    128,
+    190,
+    104,
+    293,
+    202,
+    279
+  ],
+  "protocol": "constrained_exponential_arrivals_fixed_industrial_orders_v1",
+  "schema_version": 1,
+  "simulation_replications_per_instance": 10,
+  "source_pdf": {
+    "copied_into_dataset": false,
+    "file_name": "航空标准件热处理批调度真实数据.pdf",
+    "sha256": "8898ce3900f5dddb4969c28c9911d537e33fb6342c338e4b59d4cd053b0c2569",
+    "source_location": "Table 4.1, thesis pages 45-47"
+  },
+  "target_nominal_finite_loads": [
+    0.9,
+    1.0,
+    1.1
+  ]
+}

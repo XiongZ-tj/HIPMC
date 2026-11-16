@@ -1,0 +1,44 @@
+{
+  "methods": {
+    "ours_categorical_baa": {
+      "configuration_id": "lr-1e-04_clip-0p20_gamma-0p90",
+      "parameters": {
+        "learning_rate": 0.0001,
+        "clip_ratio": 0.2,
+        "gamma": 0.9
+      }
+    },
+    "ddqnb": {
+      "configuration_id": "lr-5e-05_clip-0p20_gamma-0p99",
+      "parameters": {
+        "learning_rate": 0.00005,
+        "clip_ratio": 0.2,
+        "gamma": 0.99
+      }
+    },
+    "psa_mappo": {
+      "configuration_id": "lr-1e-04_clip-0p20_gamma-0p90",
+      "parameters": {
+        "learning_rate": 0.0001,
+        "clip_ratio": 0.2,
+        "gamma": 0.9
+      }
+    },
+    "hdrl_option": {
+      "configuration_id": "lr-5e-05_clip-0p20_gamma-0p99",
+      "parameters": {
+        "learning_rate": 0.00005,
+        "clip_ratio": 0.2,
+        "gamma": 0.99
+      }
+    }
+  },
+  "selection_domain": "generated",
+  "selection_evidence": "training_stability_and_common_validation",
+  "test_results_used_for_selection": false,
+  "training_seeds": [
+    101,
+    202,
+    303
+  ]
+}

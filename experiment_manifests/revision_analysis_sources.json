@@ -1,0 +1,99 @@
+{
+  "generated_test_selection": {
+    "case_manifest": "experiment_manifests/e1_formal_comparison_cases.csv",
+    "indexing": "original zero-based indices; first 10 per condition"
+  },
+  "generated_condition_selection": "S0 main: all 27; S1-S5: fixed five pressure strata; components: S0-S5, same five strata",
+  "references": {
+    "main": "HIPMC",
+    "components": "HIPMC",
+    "extended3000": "HIPMC",
+    "idle": "HIPMC"
+  },
+  "reference_families": {
+    "components": "main",
+    "idle": "main"
+  },
+  "sources": [
+    {
+      "path": "runs/revision_generated_drl_evaluation",
+      "domain": "generated",
+      "family": "main"
+    },
+    {
+      "path": "runs/revision_nonlearning_evaluation",
+      "domain": "generated",
+      "family": "main"
+    },
+    {
+      "path": "runs/revision_composite_priority_evaluation",
+      "domain": "generated",
+      "family": "main"
+    },
+    {
+      "path": "runs/revision_component_ablation",
+      "domain": "generated",
+      "family": "components",
+      "variants": [
+        "mmu_batch_selection",
+        "eddb_batch_selection",
+        "mast_batch_selection",
+        "periodic_maintenance_policy",
+        "health_state_threshold_maintenance_policy",
+        "tuned_composite_batch_selection",
+        "edd_job_batch_formation",
+        "ffd_batch_formation",
+        "corrective_only_maintenance_policy",
+        "full_hipmc"
+      ]
+    },
+    {
+      "path": "runs/revision_extended_budget_evaluation",
+      "domain": "generated",
+      "family": "extended3000"
+    },
+    {
+      "path": "runs/revision_idle_maintenance_evaluation",
+      "domain": "generated",
+      "family": "idle",
+      "protocols": [
+        "idle_opportunity"
+      ]
+    },
+    {
+      "path": "runs/revision_industrial_evaluation",
+      "domain": "industrial",
+      "family": "main"
+    },
+    {
+      "path": "runs/revision_industrial_sdr",
+      "domain": "industrial",
+      "family": "main"
+    },
+    {
+      "path": "runs/revision_industrial_ma",
+      "domain": "industrial",
+      "family": "main"
+    },
+    {
+      "path": "runs/revision_industrial_rh_alns",
+      "domain": "industrial",
+      "family": "main"
+    },
+    {
+      "path": "runs/revision_industrial_composite",
+      "domain": "industrial",
+      "family": "main"
+    },
+    {
+      "path": "runs/revision_small_drl_evaluation",
+      "domain": "small_industrial",
+      "family": "main"
+    },
+    {
+      "path": "runs/revision_small_milp_execution",
+      "domain": "small_industrial",
+      "family": "main"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "degradation_states": 4,
+  "failure_type_proportions": [
+    0.6,
+    0.3,
+    0.1
+  ],
+  "failure_types": 3,
+  "parameter_origin": "unchanged_study_model_parameter",
+  "production_rate_range": [
+    0.9,
+    1.0
+  ],
+  "schema_version": 1,
+  "simulation_seeds": [
+    52000000,
+    52000001,
+    52000002,
+    52000003,
+    52000004,
+    52000005,
+    52000006,
+    52000007,
+    52000008,
+    52000009
+  ]
+}

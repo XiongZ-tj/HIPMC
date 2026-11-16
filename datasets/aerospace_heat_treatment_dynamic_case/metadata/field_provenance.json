@@ -1,0 +1,26 @@
+{
+  "family_index_mapping": "source family codes 1-6 are mapped to simulator indices 0-5",
+  "observed_industrial": [
+    "source_order_id",
+    "weight",
+    "due_time",
+    "family_code",
+    "processing_time"
+  ],
+  "scenario_configured": [
+    "machine_count",
+    "maximum_capacity"
+  ],
+  "synthetically_generated": [
+    "arrival_time",
+    "is_initial"
+  ],
+  "unchanged_study_model_parameter": [
+    "degradation parameters",
+    "failure parameters",
+    "IPM parameters",
+    "PM parameters",
+    "CM parameters",
+    "production rate range"
+  ]
+}

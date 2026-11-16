@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "dataset_id": "e1_formal_structural_instances",
+  "instance_generation_protocol": "fixed_count_nominal_finite_load_v2",
+  "job_record_schema_version": 1,
+  "job_record_fields": [
+    "job_id",
+    "arrival_time",
+    "family",
+    "size",
+    "due_time"
+  ],
+  "scenario": {
+    "name": "base",
+    "job_processing_times": [
+      190,
+      158,
+      202,
+      128,
+      104
+    ],
+    "machine_counts": [
+      2,
+      2,
+      1
+    ],
+    "description": "Reference five-family, five-machine operating scale."
+  },
+  "condition_count": 27,
+  "instances_per_condition": 20,
+  "simulation_replications_per_instance": 10,
+  "structural_instance_count": 540,
+  "job_record_count": 81000,
+  "formal_case_manifest_sha256": "da16071686f62084b2f1071c46a9fbce931afe3c9f74555c50ef200588728d6e",
+  "instance_manifest_sha256": "11e44c2e800ff19c7c838b38a0b9b29bc72c4e78f092029b99be684838dae6e9",
+  "checksums_sha256": "32e924f2f43b1c2bd8f93cb01ab47af70705cec8c0607e82ec0a2151fcfc46f6",
+  "generator_source_contract": {
+    "experiment/instances.py": "5585129af7bd70f53bfdc474cc1be268709f3f9416e7e479225fe1cef29e9e76",
+    "experiment/config.py": "f206f24e98c492b00fab5a45492785d2678df74c35322fec0b6813433e55a870",
+    "experiment/problem.py": "a12b2fad0bf0c581a925cfaf2dacc8b5fcf551155c6c1a657a36b163700a76c4",
+    "comparison_runners/common_e1.py": "ebd343f7797de6854441c9069be66f04c6cbcda04001913e089cf9eef3d41d74",
+    "tools/export_e1_formal_instances.py": "cf769d221a2f7e44d14e2f0e010058e8c847464a771951e64ae2438d975449ae"
+  },
+  "generator_source_contract_sha256": "80956654ab16229564c2be3143255db787709d9756886b5ff002b12679f597ec",
+  "physical_parameter_contract": {
+    "scenario": {
+      "name": "base",
+      "job_processing_times": [
+        190,
+        158,
+        202,
+        128,
+        104
+      ],
+      "machine_counts": [
+        2,
+        2,
+        1
+      ],
+      "description": "Reference five-family, five-machine operating scale."
+    },
+    "machine_capacities": [
+      60,
+      80,
+      100
+    ],
+    "job_size_interval": [
+      10,
+      30
+    ],
+    "degradation_states": 4,
+    "degradation_rate_ranges": [
+      [
+        0.001,
+        0.005
+      ],
+      [
+        0.001,
+        0.003
+      ],
+      [
+        0.001,
+        0.002
+      ]
+    ],
+    "unexpected_failure_rate_ranges": [
+      [
+        0.0001,
+        0.0003
+      ],
+      [
+        0.0001,
+        0.0003
+      ],
+      [
+        0.0001,
+        0.0003
+      ]
+    ],
+    "terminal_degradation_rates": [
+      0.005,
+      0.003,
+      0.002
+    ],
+    "failure_type_proportions": [
+      0.6,
+      0.3,
+      0.1
+    ],
+    "ipm_recovery_rates": [
+      [
+        0.06931471805599453,
+        0.06019864021629608,
+        0.02153914580462271
+      ],
+      [
+        0.046209812037329684,
+        0.04013242681086405,
+        0.014359430536415141
+      ],
+      [
+        0.03465735902799726,
+        0.03009932010814804,
+        0.010769572902311356
+      ]
+    ],
+    "ipm_times": [
+      20,
+      30,
+      40
+    ],
+    "pm_times": [
+      60,
+      90,
+      120
+    ],
+    "corrective_time_ranges": [
+      [
+        20,
+        40
+      ],
+      [
+        40,
+        60
+      ],
+      [
+        60,
+        80
+      ]
+    ],
+    "minimal_repair_times": [
+      80,
+      120,
+      160
+    ],
+    "production_rate_range": [
+      0.9,
+      1.0
+    ]
+  },
+  "physical_parameter_contract_sha256": "7d2b1b8644c2222db15706012c61d89674e380bf914d34d538f9f04884e53a5c",
+  "serialization": {
+    "format": "UTF-8 CSV",
+    "float_format": ".17g",
+    "path_separator": "/"
+  },
+  "dataset_contract_sha256": "0e01cb9e213c785fd512bcf2ff98c3463382ce4ec7ebf5404912dee3478e6af8",
+  "created_local": "2026-08-04T13:36:10.066231+08:00",
+  "workspace_source_fingerprint_sha256": "898a59956742d67202b601ecfb67006ea71f2ef5b70f174c7a8ea467a286632f",
+  "files": {
+    "formal_case_manifest": "experiment_manifests/e1_formal_comparison_cases.csv",
+    "instance_manifest": "instance_manifest.csv",
+    "checksums": "checksums.sha256",
+    "jobs_root": "jobs"
+  },
+  "verification": {
+    "generated_vs_loaded_exact_record_equality": true,
+    "generated_vs_loaded_exact_load_equality": true,
+    "verified_structural_instances": 540,
+    "verified_job_records": 81000
+  }
+}

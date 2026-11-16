@@ -1,0 +1,49 @@
+{
+  "schema_version": 3,
+  "created_local": "2026-11-12T12:08:44.798999",
+  "contract": {
+    "instance_generation_protocol": "fixed_count_nominal_finite_load_v2",
+    "scenario": {
+      "name": "base",
+      "job_processing_times": [
+        190,
+        158,
+        202,
+        128,
+        104
+      ],
+      "machine_counts": [
+        2,
+        2,
+        1
+      ],
+      "description": "Reference five-family, five-machine operating scale."
+    },
+    "condition": {
+      "target_load": 1,
+      "initial_jobs": 30,
+      "total_jobs": 150,
+      "due_date_factor": 2.5,
+      "degradation_multiplier": 1
+    },
+    "reference_policy": "CH+MMU+Threshold",
+    "reference_metric": "mean_tardiness"
+  },
+  "contract_sha256": "949e6d624bbdc3fd572814716e9f7dbbef517ac0d9d331b29bd00687cd5b2487",
+  "calibration": {
+    "instances": 200,
+    "replications_per_instance": 3,
+    "instance_seed_start": 6000000,
+    "instance_seed_end": 6000199,
+    "simulation_seed_start": 7000000,
+    "simulation_seed_end": 7000599,
+    "replication_aggregation": "arithmetic_mean_per_instance",
+    "outlier_handling": "cross_instance_5_95_percent_winsorization"
+  },
+  "normalization_protocol": "offline_calibrated_sdr_v2",
+  "scale": {
+    "value": 13.972832842291128,
+    "estimator": "mean_of_per_instance_replication_means_after_cross_instance_5_95_percent_winsorization"
+  },
+  "source_fingerprint_sha256": "9b6144424295f55117d38877e6981fa3d0c09c606316098ab970194f3222211a"
+}

@@ -1,0 +1,91 @@
+{
+  "aggregate_nominal_capacity": 480,
+  "capacity_design_basis": "The three-class capacity ratio of the study is retained and scaled to a maximum capacity of 200, consistent with the largest reported batch weight in the industrial case.",
+  "machine_classes": [
+    {
+      "configuration_origin": "scenario_configured",
+      "corrective_time_range": [
+        20,
+        40
+      ],
+      "count": 1,
+      "degradation_and_maintenance_origin": "unchanged_study_model_parameter",
+      "degradation_rate_range": [
+        0.001,
+        0.005
+      ],
+      "ipm_recovery_rates": [
+        0.06931471805599453,
+        0.06019864021629608,
+        0.02153914580462271
+      ],
+      "ipm_time": 20,
+      "machine_class": 0,
+      "maximum_capacity": 120,
+      "minimal_repair_time": 80,
+      "pm_time": 60,
+      "terminal_degradation_rate": 0.005,
+      "unexpected_failure_rate_range": [
+        0.0001,
+        0.0003
+      ]
+    },
+    {
+      "configuration_origin": "scenario_configured",
+      "corrective_time_range": [
+        40,
+        60
+      ],
+      "count": 1,
+      "degradation_and_maintenance_origin": "unchanged_study_model_parameter",
+      "degradation_rate_range": [
+        0.001,
+        0.003
+      ],
+      "ipm_recovery_rates": [
+        0.046209812037329684,
+        0.04013242681086405,
+        0.014359430536415141
+      ],
+      "ipm_time": 30,
+      "machine_class": 1,
+      "maximum_capacity": 160,
+      "minimal_repair_time": 120,
+      "pm_time": 90,
+      "terminal_degradation_rate": 0.003,
+      "unexpected_failure_rate_range": [
+        0.0001,
+        0.0003
+      ]
+    },
+    {
+      "configuration_origin": "scenario_configured",
+      "corrective_time_range": [
+        60,
+        80
+      ],
+      "count": 1,
+      "degradation_and_maintenance_origin": "unchanged_study_model_parameter",
+      "degradation_rate_range": [
+        0.001,
+        0.002
+      ],
+      "ipm_recovery_rates": [
+        0.03465735902799726,
+        0.03009932010814804,
+        0.010769572902311356
+      ],
+      "ipm_time": 40,
+      "machine_class": 2,
+      "maximum_capacity": 200,
+      "minimal_repair_time": 160,
+      "pm_time": 120,
+      "terminal_degradation_rate": 0.002,
+      "unexpected_failure_rate_range": [
+        0.0001,
+        0.0003
+      ]
+    }
+  ],
+  "schema_version": 1
+}

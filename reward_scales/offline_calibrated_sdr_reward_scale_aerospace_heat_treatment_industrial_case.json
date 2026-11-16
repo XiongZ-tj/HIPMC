@@ -1,0 +1,22 @@
+{
+  "arrival_seed_base": 91000000,
+  "contract_sha256": "0b0ecd7f450365b55cd4297a98ae2840c98e72950eb9480e6ce0141a0532dd68",
+  "dataset_contract_sha256": "49cd7369e3fdf0c86fabdbf51e981a3f06c543bb604985125f92e67339222838",
+  "estimator": "mean of per-instance replication means after cross-instance 5th/95th percentile winsorization",
+  "floor": 1,
+  "independence": "arrival and simulation seeds are disjoint from training, validation, and formal test",
+  "instances_per_load": 60,
+  "loads": [
+    0.9,
+    1,
+    1.1
+  ],
+  "metric": "mean_tardiness",
+  "normalization_name": "offline-calibrated SDR reward normalization",
+  "reference_policy": "urgency-aware batch formation with maximum-utilization batch selection and health-state-threshold maintenance",
+  "reference_policy_code": "CH+MMU+Threshold",
+  "replications": 3,
+  "schema_version": 1,
+  "simulation_seed_base": 92000000,
+  "value": 68.63009433396276
+}

@@ -1,0 +1,53 @@
+{
+  "method": "tuned_composite_batch_priority_with_health_state_threshold_maintenance",
+  "feature_names": [
+    "capacity_utilization",
+    "mean_urgency",
+    "worst_job_urgency",
+    "waiting_starvation",
+    "processing_efficiency",
+    "uninterrupted_completion_probability"
+  ],
+  "weights": [
+    0.16399228149698922,
+    0.4321748217586043,
+    0.18566533514227573,
+    0.043164801762455594,
+    0.07270076597028086,
+    0.10230199386939429
+  ],
+  "batch_formation": "CH",
+  "maintenance_policy": "health_state_threshold",
+  "score_direction": "maximize",
+  "tie_break": "sorted_job_id_lexicographic",
+  "training_condition": {
+    "target_load": 1,
+    "initial_jobs": 30,
+    "total_jobs": 150,
+    "due_date_factor": 2.5,
+    "processing_times": [
+      190,
+      158,
+      202,
+      128,
+      104
+    ],
+    "size_interval": [
+      10,
+      30
+    ],
+    "machine_counts": [
+      2,
+      2,
+      1
+    ],
+    "machine_capacities": [
+      60,
+      80,
+      100
+    ]
+  },
+  "scene": "S0",
+  "optimization_seed": 101,
+  "deployment": "same frozen weights across all generated scenes, industrial case and BAA replacement; no test-domain retuning"
+}
