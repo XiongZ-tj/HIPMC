@@ -1,0 +1,31 @@
+__pycache__/
+*.py[cod]
+.idea/
+.pytest_cache/
+
+# New executions are immutable run artifacts, not source files.
+runs/
+
+# Rendered and diagnostic intermediates.
+tmp/
+build/
+
+*.zip
+*.exe
+*.obj
+*.o
+platform_freeze.json
+docs/archive/
+docs/audits/
+
+docs/
+*.md
+!/README.md
+*.pdf
+*.docx
+*.xlsx
+*.png
+*.svg
+*.pt
+*.pth
+*.log
