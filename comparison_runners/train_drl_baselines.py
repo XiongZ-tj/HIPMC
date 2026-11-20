@@ -72,6 +72,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--learning-rate',type=float)
     parser.add_argument('--ppo-clip-ratio',type=float)
     parser.add_argument('--discount-factor',type=float)
+    parser.add_argument('--reward-formulation', choices=('potential_difference','discount_consistent_potential'),
+                        default='potential_difference')
     parser.add_argument('--hyperparameter-file',type=Path,
                         help='Per-method selections made only on generated training/validation data.')
     parser.add_argument(
@@ -97,6 +99,8 @@ def parse_args() -> argparse.Namespace:
 
 
 def validate_args(args: argparse.Namespace) -> None:
+    if args.reward_formulation != 'potential_difference' and args.methods != ['ours_categorical_baa']:
+        raise ValueError('The shaping follow-up is restricted to HIPMC.')
     if min(
             args.episodes,
             args.validation_interval,
@@ -216,6 +220,8 @@ def main() -> None:
             existing = json.loads(config_path.read_text(encoding="utf-8"))
         else:
             existing = {}
+        if existing and existing.get('hyperparameters',{}).get('reward_formulation','potential_difference') != args.reward_formulation:
+            raise ValueError('Output directory contains a different reward formulation; use a separate directory.')
         if complete_path.is_file() and int(json.loads(
                 complete_path.read_text(encoding='utf-8')).get('episodes',0)) >= args.episodes:
             print(
@@ -244,6 +250,7 @@ def main() -> None:
         # Explicit command values allow the controlled sensitivity grid.
         for key,value in [('learning_rate',args.learning_rate),('clip_ratio',args.ppo_clip_ratio),('gamma',args.discount_factor)]:
             if value is not None:selected[key]=value
+        selected['reward_formulation']=args.reward_formulation
         effective=configure_learning(environment,selected)
         contract['hyperparameters']=effective
         contract['hyperparameter_selection_file']=str(args.hyperparameter_file) if args.hyperparameter_file else None

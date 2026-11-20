@@ -16,6 +16,8 @@ def configure_learning(environment, parameters):
     core=getattr(environment,'core',environment)
     agent=getattr(environment,'mappo',getattr(environment,'controller',None))
     changes={}
+    if 'reward_formulation' in parameters:
+        changes['reward_formulation']=parameters['reward_formulation']
     for key in ('learning_rate','clip_ratio','gamma'):
         if key not in parameters:continue
         value=float(parameters[key])
@@ -42,6 +44,7 @@ def configure_learning(environment, parameters):
         gamma_baa=getattr(agent,'gamma_baa',getattr(agent,'gamma',None)),
         gamma_mma=getattr(agent,'gamma_mma',getattr(agent,'gamma',None)),
         discount_protocol='fixed_per_decision_transition')
+    effective['reward_formulation']=core.config.reward_formulation
     if hasattr(agent, 'replay_update_interval'):
         effective.update(replay_update_interval=agent.replay_update_interval,
             replay_update_unit='new_stored_transitions_per_network',

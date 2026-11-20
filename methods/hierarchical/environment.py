@@ -956,6 +956,12 @@ class HierarchicalSchedulingEnv:
             features=template.features.copy(),
         )
 
+    def _transition_reward_raw(self, previous_potential, *, terminated, agent):
+        discount = 1.0
+        if self.config.reward_formulation == 'discount_consistent_potential' and not terminated:
+            discount = self.config.gamma_baa if agent == 'BAA' else self.config.gamma_mma
+        return discount * self._potential() - previous_potential
+
     def _close_previous_baa(
             self,
             next_state: BAAObservation | None,
@@ -964,7 +970,8 @@ class HierarchicalSchedulingEnv:
         pending = self._pending_baa
         if pending is None:
             return
-        raw_reward = self._potential() - pending.potential_at_start
+        raw_reward = self._transition_reward_raw(
+            pending.potential_at_start, terminated=terminated, agent='BAA')
         reward = raw_reward / self._active_reward_normalizer
         context = pending.context
         transition = Transition(
@@ -1012,7 +1019,8 @@ class HierarchicalSchedulingEnv:
         # global potential signal as BAA.  A machine's transition remains open
         # until that physical machine makes its next decision; only completion
         # of the complete scheduling episode is terminal.
-        raw_reward = self._potential() - pending.potential_at_start
+        raw_reward = self._transition_reward_raw(
+            pending.potential_at_start, terminated=terminated, agent='MMA')
         reward = raw_reward / self._active_reward_normalizer
         components = {
             "global_potential_delta": reward,
@@ -2037,6 +2045,7 @@ class HierarchicalSchedulingEnv:
         metrics["reward_normalizer_job_count"] = self._active_job_count
         metrics["reward_normalization_mode"] = (
             self.config.reward_normalization_mode)
+        metrics['reward_formulation'] = self.config.reward_formulation
         metrics["reward_scale_artifact_sha256"] = (
             self.config.reward_scale_artifact_sha256 or "")
         metrics["reward_reference_rule"] = (
@@ -2342,6 +2351,7 @@ class HierarchicalSchedulingEnv:
                     "baa_single_candidate_filtering": False,
                 },
                 "discount_protocol": "fixed_per_decision_transition",
+                "reward_formulation": self.config.reward_formulation,
                 "baa_entropy_weight": self.config.baa_entropy_weight,
                 "mma_entropy_schedule": {
                     "training_horizon": (
@@ -2374,8 +2384,10 @@ class HierarchicalSchedulingEnv:
                     "calibration_estimator": (
                         "mean_of_per_instance_replication_means_after_"
                         "cross_instance_5_95_percent_winsorization"),
-                    "baa_formula": "global_potential_delta / D_ref",
-                    "mma_formula": "global_potential_delta / D_ref",
+                    "baa_formula": ("global_potential_delta / D_ref" if self.config.reward_formulation == 'potential_difference'
+                                    else '(gamma_baa * next_potential - potential) / D_ref; terminal: (-TTD - potential) / D_ref'),
+                    "mma_formula": ("global_potential_delta / D_ref" if self.config.reward_formulation == 'potential_difference'
+                                    else '(gamma_mma * next_potential - potential) / D_ref; terminal: (-TTD - potential) / D_ref'),
                     "mma_global_potential_reward": True,
                     "mma_reward_protocol": self.config.mma_reward_protocol,
                     "mma_terminal": "global_scheduling_episode_only",

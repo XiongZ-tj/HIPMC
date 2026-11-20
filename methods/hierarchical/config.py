@@ -48,6 +48,7 @@ class Scenario:
 
 @dataclass(frozen=True)
 class HierarchyConfig:
+    reward_formulation: str = "potential_difference"
     mma_reward_protocol: str = "t3_global_shared"
     degradation_multiplier: float = 1.0
     degradation_states: int = DEGRADATION_STATES
@@ -95,6 +96,8 @@ class HierarchyConfig:
     max_decisions_per_episode: int = 200_000
 
     def __post_init__(self) -> None:
+        if self.reward_formulation not in ('potential_difference', 'discount_consistent_potential'):
+            raise ValueError('Unknown reward formulation.')
         if self.degradation_multiplier <= 0:
             raise ValueError("degradation_multiplier must be positive.")
         if self.degradation_states < 2 or self.failure_types != 3:

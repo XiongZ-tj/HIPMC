@@ -9,19 +9,19 @@
     "uninterrupted_completion_probability"
   ],
   "weights": [
-    0.16399228149698922,
-    0.4321748217586043,
-    0.18566533514227573,
-    0.043164801762455594,
-    0.07270076597028086,
-    0.10230199386939429
+    0.1839922814969892,
+    0.5344768156279985,
+    0.11566533514227574,
+    0.06316480176245559,
+    0.10270076597028086,
+    0.0
   ],
   "batch_formation": "CH",
   "maintenance_policy": "health_state_threshold",
   "score_direction": "maximize",
   "tie_break": "sorted_job_id_lexicographic",
   "training_condition": {
-    "target_load": 1,
+    "target_load": 1.0,
     "initial_jobs": 30,
     "total_jobs": 150,
     "due_date_factor": 2.5,
@@ -48,6 +48,8 @@
     ]
   },
   "scene": "S0",
-  "optimization_seed": 101,
-  "deployment": "same frozen weights across all generated scenes, industrial case and BAA replacement; no test-domain retuning"
+  "selection_mean_ttd": 875.8929325106077,
+  "selection_runs": 300,
+  "tuning_plan": "tuning_plan.json",
+  "selection_results": "tuning_results.json"
 }

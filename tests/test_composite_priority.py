@@ -55,6 +55,47 @@ class CompositeTests(unittest.TestCase):
         self.assertEqual(controller.select_action(observation,machine_state=2),2)
         self.assertEqual(controller.select_action(observation,machine_state=3),3)
 
+    def test_retained_batch_obeys_threshold_before_resuming(self):
+        from types import SimpleNamespace
+        from methods.baselines.sdr.shared import RuleController
+        controller=Controller(np.ones(6)/6)
+        threshold=RuleController('CH','MMU','Threshold',202)
+        observation=SimpleNamespace(proposal_features=np.ones((1,6)),
+                                    requester_index=0,action_mask=np.ones(3,dtype=bool))
+        for state,expected in [(0,0),(1,0),(2,1),(3,2)]:
+            with self.subTest(state=state):
+                actual=controller.select_action(observation,machine_state=state,
+                                                retained_batch=True)
+                self.assertEqual(actual,expected)
+                self.assertEqual(actual,threshold.select_action(observation,
+                    requester_class=0,machine_state=state,clock=100))
+
+    def test_retained_batch_bypasses_stale_candidate_scores(self):
+        from types import SimpleNamespace
+        controller=Controller(np.ones(6)/6)
+        controller.proposals=[]
+        observation=SimpleNamespace(proposal_features=np.ones((1,6)))
+        self.assertEqual(controller.select_action(observation,machine_state=1,
+                                                 retained_batch=True),0)
+
+    def test_repaired_machine_request_applies_threshold_maintenance(self):
+        for state,expected in [(2,1),(3,2)]:
+            with self.subTest(state=state):
+                env=Environment([1.,30,150,2.5,610000000],[2,2,1],
+                    processing_times=tune.CONDITION['processing_times'],
+                    controller=Controller(np.ones(6)/6),device='cpu')
+                machine=env.machines[0]
+                proposal=env.controller.build_proposals(env._available_jobs(),
+                    machine.capacity,env.clock,env.job_cluster_pt)[0]
+                machine.batch_ids=list(proposal.job_ids)
+                machine.state=state
+                with patch.object(env,'_proposal_for_reserved',return_value=proposal), \
+                        patch.object(env,'_start_action') as start:
+                    self.assertTrue(env._request(machine,epsilon=0.,training=False))
+                context=start.call_args.args[2]
+                self.assertEqual(context.mma_action,expected)
+
+
     def test_search_simplex_reproducible_and_anchors_retained(self):
         def evaluate(w,split):
             self.assertTrue(np.all(np.asarray(w)>=0))

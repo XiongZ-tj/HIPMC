@@ -30,9 +30,9 @@ class Controller:
 
     def select_action(self, observation, *, machine_state, retained_batch=False, **kwargs):
         count=len(observation.proposal_features)
-        if retained_batch:return 0
         if machine_state>=3:return count+1
         if machine_state>=2:return count
+        if retained_batch:return 0
         return select_candidate(observation.proposal_features,self.weights,
                                 [p.job_ids for p in self.proposals])
 

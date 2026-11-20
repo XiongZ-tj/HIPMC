@@ -30,9 +30,10 @@ def raw(method,value,seed='101',scene='S0',domain='generated',mode=None,sim=0):
 
 class StatisticsTests(unittest.TestCase):
     def test_formal_weights_exactly_match_returned_selection(self):
-        np.testing.assert_array_equal(load_weights(),[0.16399228149698922,0.4321748217586043,
-            0.18566533514227573,0.043164801762455594,0.07270076597028086,0.10230199386939429])
+        np.testing.assert_array_equal(load_weights(),[0.1839922814969892,0.5344768156279985,
+            0.11566533514227574,0.06316480176245559,0.10270076597028086,0.0])
         self.assertAlmostEqual(sum(load_weights()),1.)
+        self.assertAlmostEqual(json.loads(DEFAULT_WEIGHTS_FILE.read_text(encoding='utf-8'))['selection_mean_ttd'],875.8929325106077)
 
     def test_relative_denominator_is_comparator_and_not_mean_of_percentages(self):
         result=paired_comparison(frame([[1,100]]),frame([[2,100]]),draws=64)

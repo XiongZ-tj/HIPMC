@@ -171,7 +171,8 @@ def evaluate_block(
     artifact_hashes = load_model(environment, method, model_dir)
     hp=training_config.get('hyperparameters',{})
     configure_learning(environment,{'learning_rate':hp.get('learning_rate'),
-        'clip_ratio':hp.get('clip_ratio'),'gamma':hp.get('gamma_baa')})
+        'clip_ratio':hp.get('clip_ratio'),'gamma':hp.get('gamma_baa'),
+        'reward_formulation':hp.get('reward_formulation','potential_difference')})
     core = simulation_core(environment)
     reference_scene_config=core.config
     model_sha = canonical_hash(artifact_hashes)
